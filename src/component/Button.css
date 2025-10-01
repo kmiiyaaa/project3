@@ -9,12 +9,12 @@
 }
 
 .Button_positive {
-  background-color: #849afa;
+  background-color: #9dadf7;
   counter-reset: white;
 }
 
 .Button_negative {
-  background-color: #fd9e0e;
+  background-color: #ebac94;
   counter-reset: white;
 }
 

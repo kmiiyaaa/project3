@@ -1,5 +1,6 @@
 import { useSearchParams } from "react-router-dom";
 import Button from "../component/Button";
+import Header from "../component/Header";
 
 const Home = () => {
   //const [searchParams, setSearchParams] = useSearchParams(); //값이 여러개로 들어오는 경우
@@ -8,18 +9,28 @@ const Home = () => {
 
   return (
     <div>
-      <h2>HOME</h2>
-      <Button
-        type={"positive"}
-        text={"긍정 버튼"}
-        onClick={alert("positive")}
-      />
-      <Button
-        type={"negative"}
-        text={"부정 버튼"}
-        onClick={alert("negative")}
-      />
-      <Button text={"기본 버튼"} onClick={alert("default")} />
+      <Header title={HOME}>
+        leftChild
+        {
+          <Button
+            type={"positive"}
+            text={"긍정 버튼"}
+            onClick={() => {
+              alert("positive");
+            }}
+          />
+        }
+        rightChild
+        {
+          <Button
+            type={"negative"}
+            text={"부정 버튼"}
+            onClick={() => {
+              alert("negative");
+            }}
+          />
+        }
+      </Header>
     </div>
   );
 };
