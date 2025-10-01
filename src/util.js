@@ -4,7 +4,7 @@ import emotion3 from "./img/emotion3.png";
 import emotion4 from "./img/emotion4.png";
 import emotion5 from "./img/emotion5.png";
 
-export const getElementById = (emotionId) => {
+export const getEmotionImgById = (emotionId) => {
   const targetEmotionId = String(emotionId);
 
   switch (targetEmotionId) {
@@ -39,3 +39,31 @@ export const getFormattedDate = (targetDate) => {
 
   return `${year}-${month}-${date}`;
 };
+
+export const emotionList = [
+  {
+    id: 1,
+    name: "완전 좋음",
+    img: getEmotionImgById(1),
+  },
+  {
+    id: 2,
+    name: "좋음",
+    img: getEmotionImgById(2),
+  },
+  {
+    id: 3,
+    name: "보통",
+    img: getEmotionImgById(3),
+  },
+  {
+    id: 4,
+    name: "나쁨",
+    img: getEmotionImgById(4),
+  },
+  {
+    id: 5,
+    name: "완전 나쁨",
+    img: getEmotionImgById(5),
+  },
+];

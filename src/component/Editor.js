@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Editor.css";
-import { getFormattedDate } from "../util";
+import { emotionList, getFormattedDate } from "../util";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
+import EmotionItem from "./EmotionItem";
 
 //props initData : 입력/수정창에서 다르게 보여질 입력 내용
 //수정 -> 기존 입력내용이 출력 되어야 한다.
@@ -47,6 +48,29 @@ const Editor = ({ initData, onSubmit }) => {
     navigate(-1); // 이전페이지로 이동
   };
 
+  //이미지가 클릭 이벤트 핸들러
+  const handleChangeEmotion = (emotionId) => {
+    setState({
+      ...state,
+      emotionId,
+    });
+  };
+
+  useEffect(() => {
+    //initData 존재 여부 확인 -> ture -> initData props  상위 컴포넌트에 전달
+    //initData가 존재하면 일기 수정, 존재하지 않으면 새글 작성
+    //initData이 존재하면 현재 보여지는 내용이 initData의 내용 이어야함
+    if (initData) {
+      // 참이면 수정하기 실행, 거짓이면 새글 쓰기
+      setState({
+        ...initData,
+        date: getFormattedDate(new Date(parseInt(initData.date))),
+        //getTime()- 정수 - 날짜형식 - yyyy-mm-dd로 변경
+      });
+    }
+  }, [initData]); //[initData] -> 없으면 리랜더링 계속 된다
+  //initData는 처음 들어올 때 한번만 변경 -> useEffect는 1번만 실행
+
   return (
     <div className="Editor">
       <div className="eiditor_section">
@@ -59,6 +83,16 @@ const Editor = ({ initData, onSubmit }) => {
       <div className="eiditor_section">
         <h4>오늘의 감정</h4>
         {/*감정 이미지 선택창*/}
+        <div className="input_wrapper emotion_list_wrapper">
+          {emotionList.map((item) => (
+            <EmotionItem
+              key={item.id}
+              {...item}
+              onclick={handleChangeEmotion}
+              isSelected={item.id === state.emotionId}
+            />
+          ))}
+        </div>
       </div>
       <div className="eiditor_section">
         <h4>오늘의 일기</h4>

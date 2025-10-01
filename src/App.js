@@ -8,11 +8,11 @@ import Edit from "./pages/Edit";
 function App() {
   return (
     <div className="App">
-      <div>
+      {/* <div>
         <Link to={"/"}>Home</Link> |<Link to={"/new"}>Write</Link> |
         <Link to={"/diary"}>Diary</Link> |<Link to={"/edit"}>Edit</Link>
-      </div>
-      <hr />
+      </div> 
+      <hr />*/}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/new" element={<New />} />
