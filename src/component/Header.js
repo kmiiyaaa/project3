@@ -9,3 +9,5 @@ const Header = ({ title, leftChild, rightChild }) => {
     </div>
   );
 };
+
+export default Header;
