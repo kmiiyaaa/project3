@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./Editor.css";
-import { getFomattedDate } from "../util";
+import { getFormattedDate } from "../util";
+import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 //props initData : 입력/수정창에서 다르게 보여질 입력 내용
 //수정 -> 기존 입력내용이 출력 되어야 한다.
@@ -11,9 +13,9 @@ const Editor = ({ initData, onSubmit }) => {
   //   const [content, setContent] = useState();
 
   const [state, setState] = useState({
-    date: getFomattedDate(new Date()),
+    date: getFormattedDate(new Date()),
     emotionId: 3,
-    contnet: "",
+    content: "",
   });
 
   const handleChangeDate = (e) => {
@@ -26,10 +28,23 @@ const Editor = ({ initData, onSubmit }) => {
 
   const handleChangeContent = (e) => {
     setState({
-      //state 객체 내의 content 성값 변경하기
-      ...state, //객체를 분리
-      content: e.tartget.value,
+      //state 객체 내의 content 속성값 변경하기
+      ...state,
+      content: e.target.value,
     });
+  };
+
+  //작성 완료 이벤트 핸들러
+  const handleSubmit = () => {
+    onSubmit(state); // state -> 유저가 입력한 글 하나 (날짜 + 감정 + 일기)
+  };
+
+  const navigate = useNavigate();
+
+  //취소버튼 이벤트 핸들러
+  const handleOnGoBack = () => {
+    //window.history.go(-1);
+    navigate(-1); // 이전페이지로 이동
   };
 
   return (
@@ -56,7 +71,11 @@ const Editor = ({ initData, onSubmit }) => {
           ></textarea>
         </div>
       </div>
-      <div className="eiditor_section">{/*작성 완료, 취소 버튼 */}</div>
+      <div className="eiditor_section bottom_section">
+        {/*작성 완료, 취소 버튼 */}
+        {<Button text={"취소하기"} onClick={handleOnGoBack} />}
+        {<Button text={"작성완료"} type={"positive"} onClick={handleSubmit} />}
+      </div>
     </div>
   );
 };
