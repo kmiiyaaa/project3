@@ -23,7 +23,7 @@ const Editor = ({ initData, onSubmit }) => {
     setState({
       //state 객체 내의 날짜 속성값 변경하기
       ...state, //객체를 분리
-      date: e.tartget.value, // 그중에 필요한 date만 찾아서 바꾸기
+      date: e.target.value, // 그중에 필요한 date만 찾아서 바꾸기
     });
   };
 
