@@ -1,9 +1,19 @@
 import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import New from "./pages/New";
+import Diary from "./pages/Diary";
+import Edit from "./pages/Edit";
 
 function App() {
   return (
     <div className="App">
-      <img src={emotion3} />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/new" element={<New />} />
+        <Route path="/diary" element={<Diary />} />
+        <Route path="/edit" element={<Edit />} />
+      </Routes>
     </div>
   );
 }
