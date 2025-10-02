@@ -13,7 +13,7 @@ const Home = () => {
 
   const data = useContext(DiaryStateContext); //App에서 보내준 data(일기들 배열) 가져오기
 
-  const [filteredData, setFilteredData] = useState();
+  const [filteredData, setFilteredData] = useState([]);
 
   const [pivotDate, setPivotDate] = useState(new Date()); //오늘 날짜 (기준 날짜)
 
