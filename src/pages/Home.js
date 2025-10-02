@@ -1,28 +1,30 @@
+import { useSearchParams } from "react-router-dom";
 import Button from "../component/Button";
 import Header from "../component/Header";
 import Editor from "../component/Editor";
-import DiaryList from "../component/DiaryList";
-import { useState, useEffect, useContext } from "react";
-import { getMonthRangeByDate } from "../util";
+import { useContext, useEffect, useState } from "react";
 import { DiaryStateContext } from "../App";
+import { getMonthRangeByDate } from "../util";
+import DiaryList from "../component/DiaryList";
 
+//Context 설정 됨->App에서 보내준 data(일기들 배열), onCreate, onDelete, onUpdate 사용가능
 const Home = () => {
-  //const [searchParams, setSearchParams] = useSearchParams(); //값이 여러개로 들어오는 경우
-  //console.log(searchParams.get("memberId")); //이 문법 알아두기 (10/1, 11:20분쯤)
-  //request.getPatameter("mgmberId") 와 유사
-
-  const data = useContext(DiaryStateContext); //App에서 보내준 data(일기들 배열) 가져오기
+  const data = useContext(DiaryStateContext);
+  //App에서 보내준 data(일기들 배열) 가져오기
 
   const [filteredData, setFilteredData] = useState([]);
 
-  const [pivotDate, setPivotDate] = useState(new Date()); //오늘 날짜 (기준 날짜)
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // console.log(searchParams.get("memberid")); //request.getParameter("memberid") 유사
+
+  const [pivotDate, setPivotDate] = useState(new Date()); //오늘 날짜(기준 날짜)
 
   const headerTitle = `${pivotDate.getFullYear()}년 ${
     pivotDate.getMonth() + 1
   }월`;
 
   const onIncreaseMonth = () => {
-    // 월 증가 이벤트 핸들러
+    //월 증가 이벤트 핸들러
     setPivotDate(new Date(pivotDate.getFullYear(), pivotDate.getMonth() + 1));
   };
 
@@ -45,7 +47,7 @@ const Home = () => {
   }, [data, pivotDate]);
 
   const onSubmit = () => {
-    alert("작성 완료!");
+    alert("작성 완료 버튼을 클릭했음!");
   };
 
   return (
@@ -61,3 +63,7 @@ const Home = () => {
 };
 
 export default Home;
+
+//function Home() {
+// return (<div></div>);
+//}
