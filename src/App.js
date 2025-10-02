@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import New from "./pages/New";
 import Diary from "./pages/Diary";
 import Edit from "./pages/Edit";
-import { useEffect, useReducer, useRef } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 import { type } from "@testing-library/user-event/dist/type";
 
 function reducer(state, action) {
@@ -34,7 +34,12 @@ function reducer(state, action) {
   }
 }
 
+export const DiaryStateContext = React.createContext(); // context 생성 -> props drilling 방지
+export const DiaryDispatchContext = React.createContext();
+
 function App() {
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+
   const mockData = [
     {
       id: "mock1",
@@ -61,6 +66,7 @@ function App() {
       type: "INIT",
       data: mockData,
     });
+    setIsDataLoaded(true);
   }, []); //의존성 배열을 []로하면 -> 최초 마운트할 때 1번만 실행
 
   //const [state, setState] = useState();
@@ -103,23 +109,32 @@ function App() {
     });
   };
 
-  return (
-    <div className="App">
-      <div>
-        <Link to={"/"}>Home</Link>|<Link to={"/new"}>Write</Link>|
-        <Link to={"/diary"}>Diary</Link>|<Link to={"/edit"}>Edit</Link>
-      </div>
-      <hr />
-      <Routes>
-        {/* 해당되는 페이지랑 mapping */}
-        <Route path="/" element={<Home />} />
-        <Route path="/new" element={<New />} />
-        <Route path="/diary/:id" element={<Diary />} />
-        <Route path="/edit" element={<Edit />} />
-        {/* <a href='new'>a태그</a> a태그로 만들면 페이지가 리랜더링 되지 않는다 */}
-      </Routes>
-    </div>
-  );
+  if (isDataLoaded) {
+    //값이 참이면 -> data 전부 로딩 완료
+    return (
+      <DiaryStateContext.Provider value={data}>
+        <DiaryDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
+          <div className="App">
+            <div>
+              <Link to={"/"}>Home</Link>|<Link to={"/new"}>Write</Link>|
+              <Link to={"/diary"}>Diary</Link>|<Link to={"/edit"}>Edit</Link>
+            </div>
+            <hr />
+            <Routes>
+              {/* 해당되는 페이지랑 mapping */}
+              <Route path="/" element={<Home />} />
+              <Route path="/new" element={<New />} />
+              <Route path="/diary/:id" element={<Diary />} />
+              <Route path="/edit" element={<Edit />} />
+              {/* <a href='new'>a태그</a> a태그로 만들면 페이지가 리랜더링 되지 않는다 */}
+            </Routes>
+          </div>
+        </DiaryDispatchContext.Provider>
+      </DiaryStateContext.Provider>
+    );
+  } else {
+    return <div>데이터를 불러오는 중입니다.</div>;
+  }
 }
 
 export default App;

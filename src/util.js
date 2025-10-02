@@ -67,3 +67,18 @@ export const emotionList = [
     img: getEmotionImgById(5),
   },
 ];
+
+//date -> pivotDate -> pivotDate: 10월 1일~10월31일 사이 속한 일기만 필터링
+export const getMonthRangeByDate = (date) => {
+  const beginTimeStamp = new Date(
+    date.getFullYear(),
+    date.getMonth() + 1,
+    0,
+    23,
+    59,
+    59
+  ).getTime(); //다음달 0일 23시59분59초 = 이번달의 마지막 날
+  const endTimeStamp = new Date(date.getFullYear, date.getMonth()).getTime();
+
+  return { beginTimeStamp, endTimeStamp };
+};
