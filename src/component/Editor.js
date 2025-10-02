@@ -44,7 +44,7 @@ const Editor = ({ initData, onSubmit }) => {
 
   //취소버튼 이벤트 핸들러
   const handleOnGoBack = () => {
-    //window.history.go(-1);
+    //window.history.go(-1); -> 리액트 라우터사용시 이거말고 navigate(-1)사용
     navigate(-1); // 이전페이지로 이동
   };
 
@@ -57,6 +57,7 @@ const Editor = ({ initData, onSubmit }) => {
   };
 
   useEffect(() => {
+    // 의존성 배열인 [initData]값이 변경되면 리랜더
     //initData 존재 여부 확인 -> ture -> initData props  상위 컴포넌트에 전달
     //initData가 존재하면 일기 수정, 존재하지 않으면 새글 작성
     //initData이 존재하면 현재 보여지는 내용이 initData의 내용 이어야함
