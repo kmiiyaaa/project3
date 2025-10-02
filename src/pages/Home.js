@@ -11,10 +11,11 @@ const Home = () => {
   //console.log(searchParams.get("memberId")); //이 문법 알아두기 (10/1, 11:20분쯤)
   //request.getPatameter("mgmberId") 와 유사
 
-  const data = useContext(DiaryStateContext);
-  const [pivotDate, setPivotDate] = useState(new Date()); //오늘 날짜 (기준 날짜)
+  const data = useContext(DiaryStateContext); //App에서 보내준 data(일기들 배열) 가져오기
 
   const [filteredData, setFilteredData] = useState();
+
+  const [pivotDate, setPivotDate] = useState(new Date()); //오늘 날짜 (기준 날짜)
 
   const headerTitle = `${pivotDate.getFullYear()}년 ${
     pivotDate.getMonth() + 1
@@ -53,14 +54,6 @@ const Home = () => {
         title={headerTitle}
         leftChild={<Button text={"<"} onClick={onDecreaseMonth} />}
         rightChild={<Button text={">"} onClick={onIncreaseMonth} />}
-      />
-      <Editor
-        initData={{
-          date: new Date().getTime(),
-          emotionId: 1,
-          content: "이전에 작성했던 일기",
-        }}
-        onSubmit={onSubmit}
       />
       <DiaryList data={filteredData} />
     </div>

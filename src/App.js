@@ -35,7 +35,7 @@ function reducer(state, action) {
 }
 
 export const DiaryStateContext = React.createContext(); // context 생성 -> props drilling 방지
-export const DiaryDispatchContext = React.createContext();
+export const DiaryDispatchContext = React.createContext(); //자식 컴포넌트에 전달해줄 함수만 분리
 
 function App() {
   const [isDataLoaded, setIsDataLoaded] = useState(false);
@@ -43,19 +43,19 @@ function App() {
   const mockData = [
     {
       id: "mock1",
-      date: new Date().getTime(),
+      date: new Date().getTime() - 1,
       content: "mok1 일기",
       emotionId: 1,
     },
     {
       id: "mock2",
-      date: new Date().getTime(),
+      date: new Date().getTime() - 2,
       content: "mok2 일기",
       emotionId: 2,
     },
     {
       id: "mock3",
-      date: new Date().getTime(),
+      date: new Date().getTime() - 3,
       content: "mok3 일기",
       emotionId: 3,
     },
