@@ -45,7 +45,8 @@ function App() {
     {
       id: "mock1",
       date: new Date().getTime() - 1,
-      content: "mock1이 쓴 일기",
+      content:
+        "mock1이 쓴 일기 mock1이 쓴 일기 mock1이 쓴 일기 mock1이 쓴 일기 mock1이 쓴 일기",
       emotionId: 1,
     },
     {

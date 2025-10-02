@@ -63,11 +63,11 @@ const DiaryList = ({ data = [] }) => {
             onClick={onClickNew}
           />
         </div>
-        <div className="list_wrapper">
-          {sortedData.map((item) => (
-            <DiaryItem key={item.id} {...item} />
-          ))}
-        </div>
+      </div>
+      <div className="list_wrapper">
+        {sortedData.map((item) => (
+          <DiaryItem key={item.id} {...item} />
+        ))}
       </div>
     </div>
   );

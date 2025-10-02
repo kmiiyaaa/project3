@@ -8,7 +8,7 @@
 }
 
 .Header div {
-  display: flex; /*수평 정렬*/
+  display: flex;
 }
 
 .Header button {
@@ -22,11 +22,11 @@
 }
 
 .Header .header_left {
-  width: 50%;
+  width: 25%;
   justify-content: start;
 }
 
 .Header .header_right {
-  width: 50%;
+  width: 25%;
   justify-content: end;
 }

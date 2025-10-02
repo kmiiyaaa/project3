@@ -4,10 +4,26 @@ import emotion3 from "./img/emotion3.png";
 import emotion4 from "./img/emotion4.png";
 import emotion5 from "./img/emotion5.png";
 
-export const getEmotionImgById = (emotionId) => {
-  const targetEmotionId = String(emotionId);
+// export function getImg(emotionId) {
+//     switch (targetEmoionId) {
+//     case "1":
+//         return emotion1;
+//     case "2":
+//         return emotion2;
+//     case "3":
+//         return emotion3;
+//     case "4":
+//         return emotion4;
+//     case "1":
+//         return emotion5;
+//     default:
+//         return null;
+// }
 
-  switch (targetEmotionId) {
+export const getEmotionImgById = (emotionId) => {
+  const targetEmoionId = String(emotionId);
+
+  switch (targetEmoionId) {
     case "1":
       return emotion1;
     case "2":
@@ -18,7 +34,6 @@ export const getEmotionImgById = (emotionId) => {
       return emotion4;
     case "5":
       return emotion5;
-
     default:
       return null;
   }
@@ -68,17 +83,21 @@ export const emotionList = [
   },
 ];
 
-//date -> pivotDate -> pivotDate: 10월 1일~10월31일 사이 속한 일기만 필터링
+//date->pivotDate->pivotDate : 10월 -> 10월1일~10월31일 사이에 속한 일기만 필터링
+//getMonthRangeByDate->pivotDate가 인수로 들어오면 해당 월의 시작일과 마지막일만 반환
 export const getMonthRangeByDate = (date) => {
   const beginTimeStamp = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    1
+  ).getTime();
+  const endTimeStamp = new Date(
     date.getFullYear(),
     date.getMonth() + 1,
     0,
     23,
     59,
     59
-  ).getTime(); //다음달 0일 23시59분59초 = 이번달의 마지막 날
-  const endTimeStamp = new Date(date.getFullYear, date.getMonth()).getTime();
-
+  ).getTime(); //다음달의 0일의 23시59분59초->이번달의 마지막 날
   return { beginTimeStamp, endTimeStamp };
 };

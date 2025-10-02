@@ -1,8 +1,8 @@
 import "./EmotionItem.css";
 
-const EmotionItem = ({ id, img, name, onclick, isSelected }) => {
+const EmotionItem = ({ id, img, name, onClick, isSelected }) => {
   const handleOnClick = () => {
-    onclick(id);
+    onClick(id);
   };
 
   return (

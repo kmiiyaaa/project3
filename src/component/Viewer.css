@@ -17,7 +17,7 @@
 }
 
 .Viewer .emotion_img_wrapper {
-  background-color: #dfdfdf;
+  background-color: #ececec;
   width: 250px;
   height: 250px;
   border-radius: 5px;
@@ -54,16 +54,18 @@
 
 .Viewer .content_wrapper {
   width: 100%;
-  background-color: #e2e2e2;
+  background-color: #ececec;
   border-radius: 5px;
-  word-break: keep-all; /* 줄바꿈 할 때 글자단위 -> 단어 단위로 줄바꿈 변경 */
+  word-break: keep-all; /* 줄바꿈을 할때 원래 글자단위 -> 단어 단위로 줄바꿈이 됨*/
   overflow-wrap: break-word;
+  /* 띄어쓰기를 하지 않고 많은 단어 입력->줄바뀜 안됨->레이아웃 깨질 염려 발생 */
+  /* break-word -> 공간이 부족할 때 중간에 강제로 단어를 끊음 */
 }
 
 .Viewer .content_wrapper p {
   padding: 20px;
   text-align: left;
   font-size: 20px;
-  font-weight: 300px;
-  font-family: "Dongle";
+  font-family: "Sunflower";
+  font-weight: 300;
 }
