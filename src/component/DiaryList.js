@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
-import Button from "./Button";
 import "./DiaryList.css";
+import Button from "./Button";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DiaryItem from "./DiaryItem";
 
 const sortOptionList = [
   { value: "latest", name: "최신순" },
-  { value: "oldest", name: "오래된 순" },
+  { value: "oldest", name: "오래된순" },
 ];
 
-const DiaryList = ({ data }) => {
-  //data->Home에서 넘어온 props->년월별로 필터링된 일기들의 배열
+const DiaryList = ({ data = [] }) => {
+  //data : 홈에서 넘어온 props -> 월별로 필터링된 일기들의 배열
 
   const [sortType, setSortType] = useState("latest");
   const [sortedData, setSortedData] = useState([]); //정렬한 결과가 저장될 일기 배열
@@ -22,7 +22,7 @@ const DiaryList = ({ data }) => {
   };
 
   const onClickNew = () => {
-    navigate("/new"); //new페이지로 이동
+    navigate("/new"); // new페이지로 이동 , 버튼에 하이퍼링크 걸기
   };
 
   useEffect(() => {
@@ -37,6 +37,7 @@ const DiaryList = ({ data }) => {
         return Number(a.date) - Number(b.date);
       }
     };
+
     const copyList = JSON.parse(JSON.stringify(data)); //깊은 복사->data 복사본 생성
     //data.sort(compare); //원본 순서가 변경
     copyList.sort(compare);
@@ -62,11 +63,11 @@ const DiaryList = ({ data }) => {
             onClick={onClickNew}
           />
         </div>
-      </div>
-      <div className="list_wrapper">
-        {sortedData.map((item) => (
-          <DiaryItem key={item.id} {...item} />
-        ))}
+        <div className="list_wrapper">
+          {sortedData.map((item) => (
+            <DiaryItem key={item.id} {...item} />
+          ))}
+        </div>
       </div>
     </div>
   );
